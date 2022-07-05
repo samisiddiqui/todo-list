@@ -9,9 +9,14 @@
 </head>
 <body>
     <div id='app'>
-        <form>
-            <input id="todoText" type="text">
+        <form id="form">
+            <input id="todoText" type="text" required>
+            <input id="desc" type="text">
+            <input id="priority" type="range" min="1" max="5">
             <input id="submitButton" type="button" value="Submit">
+            <select id="selectList">
+                <option value="default">default</option>
+            </select>
         </form>
         <ul id="list"></ul>
     </div>
