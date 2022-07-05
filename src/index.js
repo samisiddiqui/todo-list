@@ -22,6 +22,25 @@ form.appendChild(dropdown); */
 init();
 
 function init() {
+    //App behavior on first initialization
+    if (localStorage.getItem('activeList') === null) {
+        localStorage.setItem('lists', 'default');
+        localStorage.setItem('activeList', 'default');
+    }
+    if ((localStorage.getItem('lists') === 'default')) {
+        let dropdownOption = document.createElement('option');
+        dropdownOption.setAttribute('option', 'default');
+        dropdownOption.innerHTML = 'default';
+        selectList.appendChild(dropdownOption);
+    } else {
+        let lists = data.getList('lists');
+        for (let c = 0; c < Object.keys(lists).length; c++) {
+            let dropdownOption = document.createElement('option');
+            dropdownOption.setAttribute('option', lists[c]);
+            dropdownOption.innerHTML = lists[c];
+            selectList.appendChild(dropdownOption);
+        }
+    }
     let activeList = (localStorage.getItem('activeList') === null) ? selectList.value : localStorage.getItem('activeList');
     let activeListJSON = data.getList(activeList);
     if (activeListJSON !== null) {
